@@ -134,7 +134,7 @@ div.field, div.actions {
 .field_with_errors {
    margin-top: 10px;
    padding: 2px;
-   backgronud-color: red;
+   background-color: red;
    display: table;
 }
 
