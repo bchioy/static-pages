@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
    validates :password, :presence => true,
 			:confirmation => true,
 	   		:length => { :within => 6..40 }
-   before_save :encrypted_password
+   before_save :encrypt_password
 
    def has_password?(submitted_password)
       encrypted_password == encrypt(submitted_password)
@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
    end
 
    private
-      def encrypted_password
+      def encrypt_password
 	 self.salt = make_salt if new_record?
 	 self.encrypted_password = encrypt(password)
       end
