@@ -264,6 +264,12 @@ describe UsersController do
 	   delete :destroy, :id => @user
 	   response.should redirect_to(users_path)
 	end
+
+        it "should not delete an admin" do
+           @user = Factory(:user, :email =>"admin2@example.com", :admin => true)
+	   delete :destroy, :id => @user
+	   flash[:error].should =~ /cannot delete/i
+        end
      end
   end
 
